@@ -608,6 +608,11 @@
         waitForLoaded(function () {
           var options = jsOptions(chart.data, chart.options);
           var data = createDataTable(chart.data, chart.options.discrete ? "string" : "datetime");
+
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
+
           chart.chart = new google.visualization.LineChart(chart.element);
           resize(function () {
             chart.chart.draw(data, options);
@@ -633,6 +638,10 @@
           data.addColumn("number", "Value");
           data.addRows(chart.data);
 
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
+
           chart.chart = new google.visualization.PieChart(chart.element);
           resize(function () {
             chart.chart.draw(data, options);
@@ -644,6 +653,11 @@
         waitForLoaded(function () {
           var options = jsOptions(chart.data, chart.options);
           var data = createDataTable(chart.data, "string");
+
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
+
           chart.chart = new google.visualization.ColumnChart(chart.element);
           resize(function () {
             chart.chart.draw(data, options);
@@ -662,6 +676,11 @@
           };
           var options = jsOptionsFunc(defaultOptions, hideLegend, setBarMin, setBarMax, setStacked)(chart.data, chart.options, chartOptions);
           var data = createDataTable(chart.data, "string");
+
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
+
           chart.chart = new google.visualization.BarChart(chart.element);
           resize(function () {
             chart.chart.draw(data, options);
@@ -678,6 +697,11 @@
           };
           var options = jsOptions(chart.data, chart.options, chartOptions);
           var data = createDataTable(chart.data, chart.options.discrete ? "string" : "datetime");
+
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
+
           chart.chart = new google.visualization.AreaChart(chart.element);
           resize(function () {
             chart.chart.draw(data, options);
@@ -700,6 +724,10 @@
           data.addColumn("number", "Value");
           data.addRows(chart.data);
 
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
+
           chart.chart = new google.visualization.GeoChart(chart.element);
           resize(function () {
             chart.chart.draw(data, options);
@@ -712,6 +740,10 @@
           var chartOptions = {};
           var options = jsOptions(chart.data, chart.options, chartOptions);
           var data = createDataTable(chart.data, "number");
+
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
 
           chart.chart = new google.visualization.ScatterChart(chart.element);
           resize(function () {
@@ -736,6 +768,10 @@
           data.addColumn({type: "date", id: "Start"});
           data.addColumn({type: "date", id: "End"});
           data.addRows(chart.data);
+
+          if (chart.options.dataCallback) {
+            data = window[chart.options.dataCallback](data, chart);
+          }
 
           chart.chart = new google.visualization.Timeline(chart.element);
 
